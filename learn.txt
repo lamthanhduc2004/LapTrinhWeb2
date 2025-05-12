@@ -1,0 +1,341 @@
+I. Giới Thiệu Chung về MySQL
+        
+        - MySQL là một hệ quản trị cơ sở dữ liệu quan hệ (RDBMS) mã nguồn mở, sử dụng ngôn ngữ truy vấn có cấu trúc (SQL) để quản lý và thao tác dữ liệu.
+        - MySQL được sử dụng rộng rãi trong phát triển web, thương mại điện tử, phân tích dữ liệu và các ứng dụng doanh nghiệp.
+
+        Bổ sung : 
+        - MySQL được phát triển bởi Oracle Corporation, với phiên bản Community Edition miễn phí và phiên bản Enterprise Edition có tính phí.
+        - MySQL hỗ trợ đa nền tảng (Windows, Linux, macOS) và tích hợp tốt với nhiều ngôn ngữ lập trình như PHP, Python, Java, Node.js.
+        - Tính đến năm 2025, MySQL vẫn là một trong những RDBMS phổ biến nhất, nhờ vào hiệu suất cao, cộng đồng lớn và khả năng mở rộng.
+
+        - Giới thiệu ngắn gọn về lịch sử phát triển của MySQL (bắt đầu từ năm 1995 bởi MySQL AB, sau đó được Sun Microsystems mua lại vào 2008 và Oracle vào 2010).
+        - Vai trò của MySQL trong hệ sinh thái công nghệ hiện nay, đặc biệt trong các ứng dụng web và dữ liệu lớn.
+II. CẤU TRÚC MySQL   
+    1.1 Mô hình cơ sở dữ liệu quan hệ
+        Khái niệm:
+        MySQL tổ chức dữ liệu trong các bảng (tables), mỗi bảng chứa các hàng (rows) và cột (columns).
+        Các bảng liên kết với nhau thông qua khóa chính (Primary Key) và khóa ngoại (Foreign Key), đảm bảo tính toàn vẹn quan hệ.
+
+        Ví dụ:
+        Bảng users có cột user_id (Primary Key) và name.
+        Bảng orders có cột order_id (Primary Key) và user_id (Foreign Key) liên kết với bảng users.
+
+        Lợi ích:
+        Dữ liệu được tổ chức logic, dễ truy vấn.
+        Hỗ trợ các thao tác CRUD (Create, Read, Update, Delete) thông qua SQL.
+
+    1.2 Kiến trúc phân tầng
+            MySQL sử dụng kiến trúc phân tầng, chia thành các module chính:
+                a.Connection Layer 
+                (Tầng kết nối) :
+                    Connection Layer là tầng đầu tiên trong kiến trúc phân tầng của MySQL, chịu trách nhiệm tiếp nhận và xử lý các kết nối từ client (ứng dụng, web server, công cụ như MySQL Workbench, hoặc dòng lệnh).
+                    Vai trò chính:
+                    Tiếp nhận yêu cầu kết nối từ client.
+                    Xác thực người dùng (kiểm tra username/password).
+                    Phân quyền truy cập (kiểm tra quyền SELECT, INSERT, UPDATE, v.v.).
+                    Quản lý phiên làm việc (session) sau khi kết nối thành công.
+                    Hỗ trợ các giao thức kết nối như TCP/IP, Unix socket (trên Linux/Unix), và named pipes (trên Windows).
+                    Đảm bảo bảo mật thông qua mã hóa kết nối bằng SSL/TLS.
+                b.Service Layer
+                (Tầng dịch vụ) :
+                    + SQL Interface: Nhận và phân tích cú pháp các truy vấn SQL
+                    + Query Parser: Phân tích cú pháp truy vấn để đảm bảo tính hợp lệ.
+                    + Query Optimizer: Tối ưu hóa truy vấn bằng cách chọn kế hoạch thực thi hiệu quả (dựa trên chỉ mục, thống kê bảng).
+                    + Caches & Buffers: Lưu trữ kết quả truy vấn hoặc metadata để tăng tốc độ.
+                c.Storage Engine Layer 
+                (Tầng lưu trữ) :
+                    + Chịu trách nhiệm lưu trữ và truy xuất dữ liệu từ ổ đĩa
+                    + MySQL hỗ trợ nhiều storage engine (động cơ lưu trữ), mỗi loại phù hợp với mục đích khác nhau:
+                    + Người dùng có thể chọn engine khi tạo bảng: CREATE TABLE my_table (...) ENGINE=InnoDB;
+                d.Physical Storage Layer 
+                (Tầng lưu trữ vật lý) :
+                    + Dữ liệu được lưu trên ổ đĩa dưới dạng file (ví dụ: file .ibd cho InnoDB, .MYD/.MYI cho MyISAM).
+                    + Bao gồm log files (redo log, undo log) để đảm bảo tính toàn vẹn và khôi phục sau sự cố.
+
+    1.3 Thành phần phụ trợ
+            a. Metadata: 
+                MySQL lưu thông tin về cấu trúc database (tên bảng, cột, chỉ mục) trong data dictionary (trong InnoDB từ MySQL 8.0).
+            b. Log System:
+                Binary Log: Ghi lại các thay đổi dữ liệu (dùng cho replication hoặc khôi phục).
+                Error Log: Ghi lỗi và thông báo hệ thống.
+                Slow Query Log: Ghi lại các truy vấn chậm để tối ưu hóa.
+            c. Thread Pool: 
+                Quản lý các luồng xử lý đồng thời để tăng hiệu suất khi có nhiều kết nối.
+III. Cơ chế hoạt động của MySQL
+    1.1 Quy trình xử lý truy vấn    
+        a. Kết nối từ client:
+            + Client (như MySQL Workbench, ứng dụng PHP) gửi yêu cầu qua giao thức TCP/IP hoặc socket.
+            + MySQL server xác thực client (kiểm tra username/password) và cấp phiên kết nối.
+        b. Phân tích truy vấn (Parsing):
+            + Truy vấn SQL (ví dụ: SELECT * FROM users WHERE id = 1) được gửi đến SQL Parser.
+            + Parser kiểm tra cú pháp, chuyển truy vấn thành cấu trúc cây (parse tree).
+        c. Tối ưu hóa truy vấn (Optimization):
+            + Query Optimizer phân tích parse tree và chọn kế hoạch thực thi tối ưu:
+            + Dựa trên thống kê bảng (số hàng, chỉ mục).
+            + Quyết định sử dụng chỉ mục (index), quét toàn bảng (full table scan), hoặc join bảng theo thứ tự nào.
+            + Công cụ EXPLAIN có thể được dùng để xem kế hoạch thực thi: EXPLAIN SELECT * FROM users WHERE id = 1;.
+        d. Thực thi truy vấn (Execution):
+            + Truy vấn được gửi đến Storage Engine tương ứng (ví dụ: InnoDB).
+            + Storage Engine truy xuất dữ liệu từ ổ đĩa hoặc cache, thực hiện các thao tác (đọc, ghi, cập nhật).
+            + Nếu truy vấn liên quan đến nhiều bảng, MySQL thực hiện join hoặc group by theo kế hoạch.   
+        e Trả kết quả:
+            + Kết quả được gửi về client qua kết nối.
+            + Nếu bật cache truy vấn (query cache, hiện bị loại bỏ từ MySQL 8.0), kết quả có thể được lấy từ cache để tăng tốc.
+IV. Lệnh SQL 
+    1.1 Lệnh cơ bản và lọc Dữ Liệu :
+        Mục đích: Truy xuất dữ liệu từ một hoặc nhiều bảng, áp dụng các điều kiện lọc, sắp xếp, và tổng hợp để trả về kết quả theo yêu cầu.
+                Các lệnh chính:
+                SELECT: Lấy dữ liệu từ bảng.
+                WHERE: Lọc dữ liệu dựa trên điều kiện.
+                ORDER BY: Sắp xếp kết quả.
+                LIMIT: Giới hạn số bản ghi trả về.
+                JOIN: Kết nối nhiều bảng.
+                GROUP BY và HAVING: Tổng hợp dữ liệu.
+                UNION, INTERSECT, EXCEPT: Kết hợp hoặc so sánh kết quả từ nhiều truy vấn.
+    1.2 Các Lệnh JOIN :
+        Mục đích: Kết nối các bảng để truy vấn dữ liệu từ nhiều nguồn, dựa trên mối quan hệ giữa các cột (thường là khóa chính và khóa ngoại).
+                Các loại JOIN (theo trang 28):
+                INNER JOIN: Lấy các bản ghi khớp ở cả hai bảng.
+                LEFT JOIN (hay LEFT OUTER JOIN): Lấy tất cả bản ghi từ bảng trái, bản ghi không khớp ở bảng phải trả về NULL.
+                RIGHT JOIN (hay RIGHT OUTER JOIN): Lấy tất cả bản ghi từ bảng phải, bản ghi không khớp ở bảng trái trả về NULL.
+                Loại bổ sung:
+                FULL OUTER JOIN: Lấy tất cả bản ghi từ cả hai bảng, với các giá trị NULL cho các bản ghi không khớp (MySQL không hỗ trợ trực tiếp, cần mô phỏng).
+   1.3 Tập hợp dữ liệu và toán tử :
+        A. Toán Tử So Sánh
+                Mô tả: So sánh giá trị của các cột hoặc biểu thức.
+                Danh sách:
+                = (bằng).
+                != hoặc <> (khác).
+                > (lớn hơn).
+                < (nhỏ hơn).
+                >= (lớn hơn hoặc bằng).
+                <= (nhỏ hơn hoặc bằng).
+        B. TToán Tử Logic
+                Mô tả: Kết hợp nhiều điều kiện.
+                Danh sách:
+                AND: Cả hai điều kiện phải đúng.
+                OR: Một trong hai điều kiện đúng.
+                NOT: Phủ định điều kiện.
+        C. Toán Tử Đặc Biệt
+                BETWEEN: Kiểm tra giá trị trong một khoảng.
+               
+                LIKE: Tìm kiếm theo mẫu (sử dụng % cho nhiều ký tự, _ cho một ký tự).
+                
+                IN: Kiểm tra giá trị trong danh sách.
+                
+                IS NULL / IS NOT NULL: Kiểm tra giá trị NULL
+    1.4 DATABASE :
+        A. DDL : 
+                Mục đích: Định nghĩa và quản lý cấu trúc cơ sở dữ liệu, bao gồm tạo mới, sửa đổi thuộc tính, và xóa cơ sở dữ liệu.
+                Nhóm lệnh: Thuộc DDL (Data Definition Language), được thực thi để thay đổi cấu trúc hoặc metadata của cơ sở dữ liệu.
+                Các lệnh chính:
+
+                CREATE DATABASE: Tạo cơ sở dữ liệu mới.
+                ALTER DATABASE: Sửa đổi thuộc tính của cơ sở dữ liệu.
+                DROP DATABASE: Xóa cơ sở dữ liệu và tất cả nội dung bên trong.
+                USE: Chọn cơ sở dữ liệu để làm việc.
+                Các lệnh hỗ trợ: SHOW DATABASES, SHOW CREATE DATABASE.
+
+        B. DML :
+                INSERT INTO: Thêm dữ liệu vào bảng
+
+                UPDATE: Cập nhật dữ liệu.
+
+                DELETE: Xóa dữ liệu.
+V.Ứng dụng thực tế của MySQl :
+    MySQL là một hệ quản trị cơ sở dữ liệu (RDBMS) phổ biến, được sử dụng rộng rãi trong nhiều ứng dụng thực tế nhờ tính linh hoạt, hiệu suất cao và mã nguồn mở. Dưới đây là các ứng dụng thực tế nổi bật của MySQL:
+
+            1. **Phát triển ứng dụng web**:  
+            - MySQL thường được sử dụng làm cơ sở dữ liệu cho các trang web và ứng dụng web, như hệ thống quản lý nội dung (CMS) WordPress, Drupal, Joomla.  
+            - Lưu trữ dữ liệu người dùng, bài viết, sản phẩm, giỏ hàng trong các website thương mại điện tử (ví dụ: Magento, WooCommerce).
+
+            2. **Thương mại điện tử**:  
+            - Quản lý danh mục sản phẩm, đơn hàng, thông tin khách hàng, và giao dịch trên các nền tảng như Shopify, OpenCart.  
+            - Hỗ trợ xử lý lượng lớn dữ liệu giao dịch với hiệu suất cao.
+
+            3. **Quản lý doanh nghiệp**:  
+            - Lưu trữ và quản lý dữ liệu trong các hệ thống ERP (Enterprise Resource Planning) và CRM (Customer Relationship Management).  
+            - Ví dụ: Quản lý kho, nhân sự, tài chính, hoặc thông tin khách hàng.
+
+            4. **Ứng dụng phân tích dữ liệu**:  
+            - MySQL được dùng trong kho dữ liệu (data warehouse) để lưu trữ và truy vấn dữ liệu phục vụ báo cáo và phân tích kinh doanh.  
+            - Kết hợp với các công cụ BI (Business Intelligence) như Tableau, Power BI để trực quan hóa dữ liệu.
+
+            5. **Ứng dụng di động**:  
+            - Làm backend cho các ứng dụng di động, lưu trữ thông tin người dùng, tin nhắn, hoặc dữ liệu thời gian thực (ví dụ: ứng dụng nhắn tin, mạng xã hội).  
+            - Kết hợp với các API RESTful hoặc GraphQL để giao tiếp với ứng dụng.
+
+            6. **Internet of Things (IoT)**:  
+            - Lưu trữ và quản lý dữ liệu từ các thiết bị IoT, như cảm biến, thiết bị thông minh.  
+            - Hỗ trợ xử lý dữ liệu thời gian thực với khối lượng lớn.
+
+            7. **Ứng dụng học máy và AI**:  
+            - Lưu trữ dữ liệu huấn luyện và kết quả dự đoán cho các mô hình học máy.  
+            - Dùng trong các ứng dụng như hệ thống gợi ý (recommendation systems).
+
+            8. **Hệ thống ngân hàng và tài chính**:  
+            - Quản lý giao dịch, tài khoản khách hàng, lịch sử giao dịch với độ tin cậy và bảo mật cao.  
+            - Hỗ trợ các ứng dụng như hệ thống thanh toán trực tuyến.
+
+            9. **Giáo dục và học trực tuyến**:  
+            - Lưu trữ thông tin khóa học, điểm số, và hồ sơ học viên trong các nền tảng như Moodle, Blackboard.  
+            - Quản lý dữ liệu trong các ứng dụng học trực tuyến như Coursera, Udemy.
+
+            10. **Game online**:  
+                - Lưu trữ thông tin người chơi, điểm số, vật phẩm, và tiến trình trò chơi trong các game trực tuyến.  
+                - Hỗ trợ xử lý dữ liệu nhanh để đảm bảo trải nghiệm mượt mà.
+
+            **Ưu điểm của MySQL trong các ứng dụng thực tế**:  
+            - Hỗ trợ đa nền tảng (Windows, Linux, macOS).  
+            - Dễ dàng tích hợp với nhiều ngôn ngữ lập trình (PHP, Python, Java, Node.js).  
+            - Hiệu suất cao với khối lượng dữ liệu lớn.  
+            - Cộng đồng hỗ trợ mạnh mẽ và tài liệu phong phú.
+VI. Tương lai MySql:
+    MySQL, một trong những hệ quản trị cơ sở dữ liệu quan hệ phổ biến nhất, tiếp tục phát triển và có một số xu hướng đáng chú ý trong tương lai:
+
+            ### 1. **Tích hợp mạnh mẽ với Cloud**
+            - MySQL đang ngày càng tích hợp tốt hơn với các nền tảng điện toán đám mây như AWS, Google Cloud, và Microsoft Azure. Các dịch vụ như Amazon RDS cho MySQL đã trở nên rất phổ biến, và MySQL sẽ tiếp tục được tối ưu hóa để hoạt động tốt trên các môi trường đám mây, giúp doanh nghiệp dễ dàng triển khai và mở rộng quy mô.
+            
+            ### 2. **Hỗ trợ cho phân tích dữ liệu (Analytics)**
+            - MySQL đang hướng tới việc hỗ trợ tốt hơn cho các tác vụ phân tích dữ liệu trong thời gian thực. Với việc bổ sung các tính năng như MySQL HeatWave (tích hợp phân tích dữ liệu trực tiếp trong MySQL), MySQL đang gia tăng khả năng phân tích mà không cần phải kết hợp với các công cụ phân tích bên ngoài.
+
+            ### 3. **Khả năng mở rộng và hiệu suất cao**
+            - MySQL đang tiếp tục phát triển để hỗ trợ khả năng mở rộng với các tính năng như phân mảnh dữ liệu (sharding) và hỗ trợ cho các môi trường phân tán. Việc cải thiện hiệu suất, đặc biệt là khi làm việc với khối lượng dữ liệu lớn, sẽ giúp MySQL duy trì tính cạnh tranh với các DBMS khác.
+
+            ### 4. **Tính năng bảo mật nâng cao**
+            - Bảo mật luôn là một yếu tố quan trọng trong quản trị cơ sở dữ liệu. MySQL đang ngày càng cung cấp các tính năng bảo mật mạnh mẽ hơn, chẳng hạn như mã hóa dữ liệu khi lưu trữ và truyền tải, xác thực mạnh mẽ và các công cụ quản lý quyền truy cập chi tiết.
+
+            ### 5. **Tích hợp AI và Machine Learning**
+            - MySQL sẽ tiếp tục mở rộng khả năng tích hợp với các công cụ AI và machine learning. Điều này sẽ giúp việc phân tích dữ liệu và đưa ra các quyết định trong thời gian thực trở nên dễ dàng hơn, đặc biệt trong các hệ thống có yêu cầu phân tích dữ liệu lớn và phức tạp.
+
+            ### 6. **Mở rộng và tối ưu hóa cho các ứng dụng microservices**
+            - MySQL sẽ được tối ưu hóa để sử dụng trong các kiến trúc microservices, với khả năng làm việc hiệu quả trong môi trường container hóa (Docker, Kubernetes) và hỗ trợ các API RESTful để kết nối giữa các dịch vụ.
+
+            ### 7. **Cải thiện hỗ trợ JSON và dữ liệu không quan hệ**
+            - MySQL đã bắt đầu hỗ trợ JSON và các dữ liệu không quan hệ (NoSQL) một cách tốt hơn, và xu hướng này sẽ tiếp tục trong tương lai. Việc MySQL hỗ trợ nhiều kiểu dữ liệu sẽ làm cho nó phù hợp hơn với các ứng dụng hiện đại, nơi có yêu cầu lưu trữ cả dữ liệu quan hệ và phi quan hệ.
+
+            Tóm lại, MySQL vẫn sẽ duy trì vai trò quan trọng trong thế giới cơ sở dữ liệu trong những năm tới, đặc biệt khi nó tiếp tục phát triển để đáp ứng các yêu cầu mới của công nghệ và doanh nghiệp.
+                  
+1. Ràng Buộc Khóa Chính (PRIMARY KEY)
+Mục đích: Đảm bảo mỗi bản ghi trong bảng là duy nhất và không có giá trị NULL.
+Danh sách:
+LibraryBranch: BranchID (khóa chính)
+Book: ISBN (khóa chính)
+Member: MemberID (khóa chính)
+BookItem: BookItemID (khóa chính)
+Librarian: LibrarianID (khóa chính)
+BookLending: LendingID (khóa chính)
+BookReturn: ReturnID (khóa chính)
+Reservation: ReservationID (khóa chính)
+Fine: FineID (khóa chính)
+Rack: RackID (khóa chính)
+2. Ràng Buộc Khóa Ngoại (FOREIGN KEY)
+Mục đích: Đảm bảo tính toàn vẹn tham chiếu, nghĩa là giá trị trong một cột phải tồn tại trong cột khóa chính của bảng được tham chiếu.
+Danh sách:
+LibraryBranch:
+ManagerID tham chiếu Librarian.LibrarianID (mỗi chi nhánh có một thủ thư quản lý).
+BookItem:
+ISBN tham chiếu Book.ISBN (bản sao sách thuộc một đầu sách).
+BranchID tham chiếu LibraryBranch.BranchID (bản sao sách thuộc một chi nhánh).
+RackID tham chiếu Rack.RackID (bản sao sách được đặt trên một kệ).
+Librarian:
+BranchID tham chiếu LibraryBranch.BranchID (thủ thư làm việc tại một chi nhánh).
+Member:
+RegisteredBranch tham chiếu LibraryBranch.BranchID (bạn đọc đăng ký tại một chi nhánh).
+BookLending:
+BookItemID tham chiếu BookItem.BookItemID (lần mượn liên quan đến một bản sao sách).
+MemberID tham chiếu Member.MemberID (lần mượn do một bạn đọc thực hiện).
+LibrarianID tham chiếu Librarian.LibrarianID (lần mượn được xử lý bởi một thủ thư).
+BookReturn:
+LendingID tham chiếu BookLending.LendingID (lần trả tương ứng với một lần mượn).
+LibrarianID tham chiếu Librarian.LibrarianID (lần trả được xử lý bởi một thủ thư).
+Reservation:
+BookItemID tham chiếu BookItem.BookItemID (đặt sách cho một bản sao sách).
+MemberID tham chiếu Member.MemberID (đặt sách do một bạn đọc thực hiện).
+BranchID tham chiếu LibraryBranch.BranchID (đặt sách tại một chi nhánh).
+Fine:
+MemberID tham chiếu Member.MemberID (phí phạt áp dụng cho một bạn đọc).
+LendingID tham chiếu BookLending.LendingID (phí phạt liên quan đến một lần mượn).
+IssuedBy tham chiếu Librarian.LibrarianID (phí phạt được phát hành bởi một thủ thư).
+Rack:
+BranchID tham chiếu LibraryBranch.BranchID (kệ sách thuộc một chi nhánh).
+3. Ràng Buộc Kiểm Tra (CHECK)
+Mục đích: Giới hạn các giá trị được phép trong một cột để đảm bảo dữ liệu phù hợp với quy tắc nghiệp vụ (tương tự ENUM trong các hệ khác).
+Danh sách:
+BookItem:
+Status: CHECK (Status IN (N'Available', N'Borrowed', N'Reserved', N'Lost')).
+Đảm bảo trạng thái bản sao sách chỉ là một trong bốn giá trị: Có sẵn, Đã mượn, Đã đặt, Mất.
+Librarian:
+Role: CHECK (Role IN (N'Manager', N'Staff')).
+Đảm bảo vai trò thủ thư chỉ là Quản lý hoặc Nhân viên.
+BookLending:
+Status: CHECK (Status IN (N'Borrowed', N'Returned', N'Overdue')).
+Đảm bảo trạng thái mượn sách chỉ là Đã mượn, Đã trả, Quá hạn.
+Reservation:
+Status: CHECK (Status IN (N'Pending', N'Fulfilled', N'Cancelled')).
+Đảm bảo trạng thái đặt sách chỉ là Đang chờ, Đã hoàn thành, Đã hủy.
+Fine:
+PaymentStatus: CHECK (PaymentStatus IN (N'Unpaid', N'Paid')).
+Đảm bảo trạng thái thanh toán phí phạt chỉ là Chưa thanh toán hoặc Đã thanh toán.
+4. Ràng Buộc NOT NULL
+Mục đích: Đảm bảo một số cột bắt buộc phải có giá trị, không được để NULL.
+Danh sách (chỉ liệt kê các cột NOT NULL quan trọng, ngoài khóa chính vốn mặc định NOT NULL):
+LibraryBranch:
+Name (NOT NULL): Tên chi nhánh bắt buộc.
+Address (NOT NULL): Địa chỉ chi nhánh bắt buộc.
+Book:
+Title (NOT NULL): Tiêu đề sách bắt buộc.
+Author (NOT NULL): Tác giả sách bắt buộc.
+Member:
+FullName (NOT NULL): Họ tên bạn đọc bắt buộc.
+RegisteredBranch (NOT NULL): Chi nhánh đăng ký bắt buộc.
+BookItem:
+ISBN (NOT NULL): Mã sách bắt buộc.
+BranchID (NOT NULL): Chi nhánh lưu trữ bản sao bắt buộc.
+Status (NOT NULL): Trạng thái bản sao bắt buộc.
+Librarian:
+FullName (NOT NULL): Họ tên thủ thư bắt buộc.
+BranchID (NOT NULL): Chi nhánh làm việc bắt buộc.
+Role (NOT NULL): Vai trò thủ thư bắt buộc.
+BookLending:
+BookItemID (NOT NULL): Bản sao sách mượn bắt buộc.
+MemberID (NOT NULL): Bạn đọc mượn bắt buộc.
+LibrarianID (NOT NULL): Thủ thư xử lý bắt buộc.
+LendDate (NOT NULL): Ngày mượn bắt buộc.
+DueDate (NOT NULL): Ngày đến hạn bắt buộc.
+Status (NOT NULL): Trạng thái mượn bắt buộc.
+BookReturn:
+LendingID (NOT NULL): Lần mượn tương ứng bắt buộc.
+ReturnDate (NOT NULL): Ngày trả bắt buộc.
+LibrarianID (NOT NULL): Thủ thư xử lý bắt buộc.
+Reservation:
+BookItemID (NOT NULL): Bản sao sách đặt bắt buộc.
+MemberID (NOT NULL): Bạn đọc đặt bắt buộc.
+BranchID (NOT NULL): Chi nhánh đặt bắt buộc.
+ReserveDate (NOT NULL): Ngày đặt bắt buộc.
+Status (NOT NULL): Trạng thái đặt bắt buộc.
+Fine:
+MemberID (NOT NULL): Bạn đọc bị phạt bắt buộc.
+LendingID (NOT NULL): Lần mượn liên quan bắt buộc.
+Amount (NOT NULL): Số tiền phạt bắt buộc.
+PaymentStatus (NOT NULL): Trạng thái thanh toán bắt buộc.
+IssuedBy (NOT NULL): Thủ thư phát hành bắt buộc.
+Rack:
+BranchID (NOT NULL): Chi nhánh chứa kệ bắt buộc.
+Capacity (NOT NULL): Sức chứa kệ bắt buộc.
+CurrentLoad (NOT NULL): Số sách hiện tại bắt buộc.
+5. Ràng Buộc Duy Nhất (UNIQUE) (Nếu có)
+Mục đích: Đảm bảo giá trị trong một cột hoặc tập hợp cột là duy nhất (ngoài khóa chính).
+Danh sách:
+Hiện tại, trong lược đồ NationalLibraryDB, không có ràng buộc UNIQUE rõ ràng nào được áp dụng ngoài khóa chính, vì các thuộc tính như Email hoặc Phone có thể trùng lặp (ví dụ: nhiều bạn đọc có thể không cung cấp email, hoặc email có thể trùng trong thực tế).
+Tuy nhiên, nếu cần, có thể thêm ràng buộc UNIQUE cho:
+LibraryBranch.Email: Đảm bảo email chi nhánh là duy nhất (nếu nghiệp vụ yêu cầu).
+Member.Email: Đảm bảo email bạn đọc là duy nhất (nếu nghiệp vụ yêu cầu).
+6. Ràng Buộc Khác (Tùy chọn, theo Nghiệp vụ)
+Ràng buộc giá trị không âm:
+Book.Price: Có thể thêm CHECK (Price >= 0) để đảm bảo giá sách không âm.
+Fine.Amount: Có thể thêm CHECK (Amount >= 0) để đảm bảo số tiền phạt không âm.
+Rack.Capacity và Rack.CurrentLoad: Có thể thêm CHECK (Capacity >= 0) và CHECK (CurrentLoad >= 0 AND CurrentLoad <= Capacity) để đảm bảo sức chứa và số sách hợp lệ.
+Ràng buộc ngày:
+BookLending.DueDate: Có thể thêm CHECK (DueDate >= LendDate) để đảm bảo ngày đến hạn không sớm hơn ngày mượn.
+Reservation.ExpiryDate: Có thể thêm CHECK (ExpiryDate >= ReserveDate) để đảm bảo ngày hết hạn không sớm hơn ngày đặt.

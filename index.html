@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANLYSHOP</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Logo -->
+    <link rel="icon" href="imgs/logo.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Promotion Bar -->
+    <div class="promo-bar bg-white text-primary py-2 text-center fw-bold text-uppercase d-flex justify-content-center align-items-center">
+        <span>Khuyến mãi giảm tới 35% tất cả sản phẩm</span>
+        <a href="register.html" class="btn btn-primary ms-3 fw-bold" style="color: white;">ĐĂNG KÍ NGAY</a>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-danger text-white py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Logo -->
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <a href="index.html" class="logo-container">
+                        <img src="imgs/logo.png" alt="Logo" class="shop-logo" style="max-width: 60px; height: auto;">
+                        <span class="fw-bold fs-4 text-white">SELLPHONESSS</span>
+                    </a>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- User Actions -->
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="me-4 d-none d-md-block">
+                            <div class="text-end">
+                                <div><a href="login.html" class="text-decoration-none text-white">Đăng nhập /</a>
+                                    <a href="register.html" class="text-decoration-none text-white">Đăng ký</a>
+                                </div>
+                                <a class="text-white">Tài khoản của tôi <i class="fas fa-user"></i></a>
+                            </div>
+                        </div>
+                        <!-- CART -->
+                        <div class="position-relative me-3">
+                            <a href="cart.html" class="btn btn-outline-dark position-relative">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    0
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service Badges -->
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
+                        <div class="d-flex align-items-center">
+                            <span class="bg-white bg-opacity-25 p-1 rounded-circle me-2">
+                                <i class="fas fa-check-circle text-dark"></i>
+                            </span>
+                            <span>CHẤT LƯỢNG ĐẢM BẢO</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="bg-white bg-opacity-25 p-1 rounded-circle me-2">
+                                <i class="fas fa-truck text-dark"></i>
+                            </span>
+                            <span>VẬN CHUYỂN TOÀN QUỐC</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="bg-white bg-opacity-25 p-1 rounded-circle me-2">
+                                <i class="fas fa-shield-alt text-dark"></i>
+                            </span>
+                            <span>BẢO HÀNH CỰC TỐT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-0">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium py-3 px-3" href="#">TRANG CHỦ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium py-3 px-3" href="#apple">IPHONE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium py-3 px-3" href="#samsung">SAMSUNG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium py-3 px-3" href="#footer">LIÊN HỆ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium py-3 px-3" href="#">CỬA HÀNG</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline-danger rounded-3 px-3 py-1">
+                    <i class="fas fa-mobile-alt me-1"></i> Mua điện thoại
+                </a>
+            </div>
+        </div>
+        </nav>
+
+    <!-- Main Slider -->
+    <div class = "main">
+            <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Book -->
+                    <div class="carousel-item active">
+                        <img src="imgs/slide1.jpg" class="d-block w-100" alt="Grooming & Spa">                        
+                    </div>
+                    <!-- CAT PROD -->
+                    <div class="carousel-item">
+                        <img src="imgs/slide2.jpg" class="d-block w-100" alt="Cat Products">
+                    </div>
+                    <!-- DOGDOG PROD -->          
+                    <div class="carousel-item">
+                        <img src="imgs/slide3.jpg" class="d-block w-100" alt="Dog Products">
+                    </div>
+                </div>
+        
+                <!-- Button Slide -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+    </div>
+        
+    <!-- Features -->
+    <div class="features-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="feature-item d-flex align-items-center p-3 border rounded shadow-sm mb-3 mb-md-0">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-truck text-primary fs-3"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 class="fs-5 mb-0">Giao hàng siêu tốc</h3>
+                            <p class="mb-0">Phủ sóng 63 tỉnh thành</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item d-flex align-items-center p-3 border rounded shadow-sm mb-3 mb-md-0">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-medal text-primary fs-3"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 class="fs-5 mb-0">Hàng xịn 100%</h3>
+                            <p class="mb-0">Bảo hành chính hãng</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item d-flex align-items-center p-3 border rounded shadow-sm mb-3 mb-md-0">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-wallet text-primary fs-3"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 class="fs-5 mb-0">Đa dạng thanh toán</h3>
+                            <p class="mb-0">Trả góp 0% lãi suất</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item d-flex align-items-center p-3 border rounded shadow-sm">
+                        <div class="feature-icon me-3">
+                            <i class="fas fa-headset text-primary fs-3"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3 class="fs-5 mb-0">Tư vấn 24/7</h3>
+                            <p class="mb-0">Đội ngũ chuyên nghiệp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop By Brand -->
+    <div class="shop-by-brand py-5 bg-light" id ="features">
+        <div class="container">
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fs-3 mb-0">SẢN PHẨM NỔI BẬT</h2>
+                <a href="#" class="view-all text-primary text-decoration-none">Xem Tất Cả</a>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/iphone16promax.png"  class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">iPhone 16 Promax</h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/ipphone15promax.png" alt="Thức Ăn Cho Mèo Con" class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">iPhone 15 Promax</h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/SE2022.png" alt="Cát Vệ Sinh Mèo" class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">iPhone SE 2022</h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/S24ultra.png" alt="Sữa Tắm Cho Mèo Con" class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">Samsung Galaxy S24 Ultra</h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/zfold5.png" alt="Đồ Chơi Cho Mèo Con" class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">Samsung Galaxy Z Fold5</h3>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4">
+                    <div class="product-category text-center">
+                        <div class="category-image bg-white rounded p-3 mb-3">
+                            <img src="imgs/zflip6.png" alt="Nhà Cho Mèo" class="img-fluid">
+                        </div>
+                        <h3 class="fs-6">Samsung Galaxy Z Flip6</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apple Products -->
+    <div class="apple-products py-5" id = "apple">
+        <div class="container">
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fs-3 mb-0">SẢN PHẨM APPLE</h2>
+                <a href="product.html" class="view-all text-primary text-decoration-none">Xem tất cả</a>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/iphone16promax.png" alt="Royal Canin Indoor" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">iPhone 16 Pro Max</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">30.690.000đ</span>
+                                <span class="original-price text-decoration-line-through text-muted">34.990.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/ipphone15promax.png" alt="Royal Canin Kitten" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">iPhone 15 Pro Max</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">27.990.000đ
+                                </span>
+                                <span class="original-price text-decoration-line-through text-muted">34.990.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/SE2022.png" alt="Royal Canin Kitten Pouches" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">iPhone SE 2022</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">9.990.000đ</span>
+                                <span class="original-price text-decoration-line-through text-muted">10.990.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/iphone13.png" alt="Royal Canin Urinary" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">iPhone 13</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5">11.690.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Samsung Products -->
+    <div class="samsung-products py-5" id = "samsung">
+        <div class="container">
+            <div class="section-title d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fs-3 mb-0">SẢN PHẨM SAMSUNG</h2>
+                <a href="product.html" class="view-all text-primary text-decoration-none">Xem tất cả</a>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/s24ultra.png" alt="Royal Canin Indoor" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">Samsung Galaxy S24 Ultra</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">24.290.000đ</span>
+                                <span class="original-price text-decoration-line-through text-muted">33.990.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/zfold5.png" alt="Royal Canin Kitten" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">Samsung Galaxy Z Fold5</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">29.990.000đ
+                                </span>
+                                <span class="original-price text-decoration-line-through text-muted">44.990.000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="product-image p-3 bg-light text-center">
+                                <img src="imgs/zflip6.png" alt="Royal Canin Kitten Pouches" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">Samsung Galaxy Z Flip6</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5 me-2">19.990.000đ</span>
+                                
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="product-card border rounded overflow-hidden h-100">
+                        <div class="position-relative">
+                            <div class="product-image p-3 bg-light text-center">
+                                <div class="discount-badge position-absolute top-0 start-0 bg-danger text-white px-2 py-1 m-2 rounded">Giảm Giá</div>
+                                <img src="imgs/a56.png" alt="Royal Canin Urinary" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="product-info p-3">
+                            <h3 class="product-title fs-6 mb-2">Samsung Galaxy A56</h3>
+                            <div class="product-price mb-3">
+                                <span class="price fw-bold fs-5">9.490.000đ</span>
+                                <span class="original-price text-decoration-line-through text-muted">10.990.0000đ</span>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="btn btn-primary flex-grow-1 me-2">
+                                    <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Chat -->
+    <div class="support-chat">
+        <div class="chat-button position-fixed bottom-0 end-0 m-4">
+            <button class="btn btn-primary rounded-circle p-3 shadow">
+                <i class="fas fa-comments fs-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-danger text-white pt-5 pb-3" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="footer-about">
+                        <img src="" alt="SELLPHONESSS" class="footer-logo mb-3 rounded">
+                        <p class="text-white-50">SELLPHONESSS - Cửa hàng điện thoại uy tín hàng đầu Việt Nam, cung cấp đầy đủ các sản phẩm chất lượng về điện thoại cho bạn.</p>
+                        <div class="social-links">
+                            <a href="facebook.com/lamthanhduc2004" class="btn btn-dark btn-sm me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="btn btn-dark btn-sm me-2"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title fs-5 mb-3">Thông tin</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Về chúng tôi</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Chính sách bảo mật</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Điều khoản sử dụng</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Chính sách vận chuyển</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Chính sách đổi trả</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title fs-5 mb-3">Danh mục sản phẩm</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li class="mb-2"><a href="#samsung" class="text-white-50 text-decoration-none">SẢN PHẨM SAMSUNG</a></li>
+                        <li class="mb-2"><a href="#apple" class="text-white-50 text-decoration-none">SẢN PHẨM APPLE</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title fs-5 mb-3">Liên hệ</h4>
+                    <ul class="contact-info list-unstyled">
+                        <li class="d-flex mb-3">
+                            <i class="fas fa-map-marker-alt me-2 mt-1"></i>
+                            <span class="text-white-50">96A Đ. Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội </span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="fas fa-phone-alt me-2 mt-1"></i>
+                            <span class="text-white-50">0123456789</span>
+                        </li>
+                        <li class="d-flex mb-3">
+                            <i class="fas fa-envelope me-2 mt-1"></i>
+                            <span class="text-white-50">ducltb22cn227@stu.ptit.edu.vn</span>
+                        </li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5 class="mb-3">Đăng ký nhận tin</h5>
+                        <div class="newsletter-form input-group">
+                            <input type="email" class="form-control" placeholder="Email của bạn">
+                            <button type="submit" class="btn btn-light">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom border-top border-light mt-4 pt-4">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <p class="copyright text-white-50 mb-0">© 2004 duc.vn Tất cả quyền được bảo lưu.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="payment-methods text-md-end">
+                            <span class="text-white-50 me-2">Phương thức thanh toán:</span>
+                            <img src="imgs/bankP.png" alt="Payment Methods" height="30">
+                            <img src="imgs/moneyP.png" alt="Payment Methods" height="30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

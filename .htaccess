@@ -1,0 +1,23 @@
+# Đặt thư mục gốc cho website
+RewriteEngine On
+RewriteBase /
+
+# Đảm bảo các tài nguyên tĩnh được tìm thấy
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.html [L]
+</IfModule>
+
+# Cho phép truy cập vào thư mục imgs
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+</IfModule>
+
+# Đặt charset mặc định
+AddDefaultCharset UTF-8
+
+# Tắt liệt kê thư mục
+Options -Indexes 

@@ -1,0 +1,52 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    padding-top: 20px;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    color: #0d6efd;
+}
+
+.sidebar .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.card-stat {
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-stat small {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.tab-content {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}

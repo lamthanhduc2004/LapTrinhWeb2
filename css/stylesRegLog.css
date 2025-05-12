@@ -1,0 +1,285 @@
+/* General styles for the register page */
+.register-page {
+    background-color: #f0f4f8; /* Light gray-blue background */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* Container for the register form */
+.register-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header of the register form */
+.register-header {
+    background-color: orange !important; /* Sea blue */
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.register-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Body of the register form */
+.register-body {
+    padding: 30px;
+}
+
+/* Logo styling */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 120px;
+    height: auto;
+}
+
+/* Form input styling */
+.form-control, .form-select {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #00A1D6;
+    box-shadow: 0 0 5px rgba(0, 161, 214, 0.5);
+    outline: none;
+}
+
+/* Label styling */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Password toggle button */
+.toggle-password {
+    color: #666;
+}
+
+.toggle-password:hover {
+    color: #00A1D6;
+}
+
+/* Checkbox and radio styling */
+.form-check-input:checked {
+    background-color: #00A1D6;
+    border-color: #00A1D6;
+}
+
+.form-check-label {
+    cursor: pointer;
+    color: #333;
+}
+
+/* Buttons */
+.btn-register {
+    background-color: orange !important;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn-register:hover {
+    background-color: #0086b3;
+}
+
+.btn-reset {
+    background-color: red !important;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn-reset:hover {
+    background-color: #5a6268;
+}
+
+/* Back to login links */
+.back-to-login {
+    text-align: center;
+}
+
+.back-to-login a {
+    color: #00A1D6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-to-login a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+
+
+
+
+
+
+/* General styles for both register and login pages */
+body {
+    background-color: #f0f4f8; /* Light gray-blue background */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* Container for register and login forms */
+.register-container, .simple-login-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Header for register form */
+.register-header {
+    background-color: #00A1D6; /* Sea blue */
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.register-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Body for register form */
+.register-body {
+    padding: 30px;
+}
+
+/* Logo styling for both pages */
+.logo-container, .text-center .login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo, .login-logo {
+    max-width: 120px;
+    height: auto;
+}
+
+/* Login title */
+.simple-login-title {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Form input styling */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: #00A1D6;
+    box-shadow: 0 0 5px rgba(0, 161, 214, 0.5);
+    outline: none;
+}
+
+/* Label styling */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Password field styling */
+.password-field {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+}
+
+.toggle-password:hover {
+    color: #00A1D6;
+}
+
+/* Buttons */
+.btn-register, .simple-login-btn {
+    background-color: #00A1D6;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.btn-register:hover, .simple-login-btn:hover {
+    background-color: #0086b3;
+    transform: translateY(-2px);
+}
+
+.btn-reset {
+    background-color: #6c757d;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.btn-reset:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Links styling */
+.back-to-login, .back-to-home, .account-alr, .forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-to-login a, .back-to-home a, .account-alr, .forgot-password {
+    color: #00A1D6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-to-login a:hover, .back-to-home a:hover, .account-alr:hover, .forgot-password:hover {
+    text-decoration: underline;
+}

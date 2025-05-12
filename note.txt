@@ -1,0 +1,54 @@
+1. container -> Mục đích: Bao bọc nội dung chính để giới hạn chiều rộng và căn giữa trên các kích thước màn hình.
+             Bootstrap: Container responsive, tự động điều chỉnh margin và padding.
+
+2. row align-items-center:
+            Mục đích: Sắp xếp các phần tử con (logo, thanh tìm kiếm, hành động người dùng) theo hàng ngang và căn chỉnh dọc.
+            Bootstrap:
+            row: Tạo hàng trong hệ thống grid.
+            align-items-center: Căn giữa các phần tử theo trục dọc.
+            
+3. col-md-3 mb-3 mb-md-0:
+            Mục đích: Chia cột cho logo, thanh tìm kiếm, hoặc các hành động người dùng.
+            Bootstrap:
+            col-md-3: Chiếm 3/12 cột trên màn hình từ medium (≥768px) trở lên.
+            mb-3: Margin dưới 3 đơn vị.
+            mb-md-0: Xóa margin dưới trên màn hình medium trở lên.
+
+4. fw-bold fs-4 text-dark:
+            Front Wight , Front-size , text
+
+5. form-control:
+            Hỗ trợ nhập dữ liệu.
+
+6.<nav> :  thành một thanh điều hướng (navigation bar) của Bootstrap
+
+7.navbar-expand-lg
+            Chức năng:
+            Chỉ định breakpoint mà tại đó menu sẽ mở rộng (expanded) trên màn hình lớn và thu gọn (collapsed) trên màn hình nhỏ.
+            lg tương ứng với màn hình ≥992px (large).
+
+8.Borde : thuộc nhóm class border-* (border-top, border-bottom, border-start, border-end).
+
+9.navbar-toggler : 
+            Chức năng:
+            Định dạng nút toggler (menu hamburger) hiển thị trên màn hình nhỏ để mở/đóng menu.
+
+10.me-autoauto : margin - end : căn chỉnh nút sang trái (ms) -> sang phải.
+
+11.li : list items.
+            Mỗi <li> chứa một liên kết (<a>) đến trang hoặc section cụ thể.
+12.Nav-link : định dạng mỗi li = css.
+
+13.mainCarousel : Định danh để các nút điều khiển (carousel-control-prev, carousel-control-next)
+             và chỉ báo (carousel-indicators) tham chiế
+
+14.data-bs-ride="carousel": Kích hoạt tự động chuyển slide khi trang tải, mỗi slide hiển thị trong khoảng thời gian mặc định (~5 giây)
+
+15.data-bs-interval="3000": Tgian = 3000ms.
+
+16.position-fixed:
+            Chức năng: Đặt vị trí cố định (position: fixed) cho nút, giữ nút ở một vị trí bất biến khi cuộn trang.
+
+17.Label : nhập dữ liệu
+class="row align-items-center"
+class : label : Nhãn đi cùng Fomr control

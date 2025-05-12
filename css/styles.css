@@ -1,0 +1,194 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Promo Bar */
+.promo-bar {
+    background-color: white !important;
+    color: #0d6efd !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+}
+.Pr-btn{
+    color : white !important;
+}
+
+/* Header */
+header {
+    background-color: #dc3545 !important;
+}
+
+/* Logo */
+:root {
+    
+    --logo-width: 50px;      
+    --logo-height: auto;       
+    --logo-max-width: 60px;    
+    
+   
+    --logo-text-size: 1.25rem;   
+    --logo-text-weight: 600;    
+    --logo-text-color: #212529;  
+  }
+
+
+  
+  /* Kiểu dáng cho container logo */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  /* Kiểu dáng cho hình ảnh logo */
+  .shop-logo {
+    width: var(--logo-width);
+    height: var(--logo-height);
+    max-width: var(--logo-max-width);
+    object-fit: contain; 
+    margin-right: 0.5rem;
+  }
+  
+  /* Kiểu dáng cho văn bản logo */
+  .shop-name {
+    font-size: var(--logo-text-size);
+    font-weight: var(--logo-text-weight);
+    color: var(--logo-text-color);
+  }
+  
+
+/* Navigation */
+
+
+
+.navbar .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+/* Carousel */
+.carousel-item {
+    height: 500px;
+    position: relative;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+.carousel-control-prev {
+    left: 20px;
+}
+
+.carousel-control-next {
+    right: 20px;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Features Section */
+.feature-item {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Product Categories */
+.product-category {
+    transition: transform 0.3s;
+}
+
+.product-category:hover {
+    transform: translateY(-5px);
+}
+
+.category-image {
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s;
+}
+
+.product-category:hover .category-image {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Product Cards */
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.discount-badge {
+    z-index: 1;
+    font-size: 0.8rem;
+}
+
+.product-actions button {
+    transition: all 0.3s;
+}
+
+/* Support Chat */
+.chat-button button {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s;
+}
+
+.chat-button button:hover {
+    transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+    background-color: #dc3545 !important;
+}
+
+.footer-links a, .contact-info a {
+    transition: color 0.3s;
+}
+
+.footer-links a:hover, .contact-info a:hover {
+    color: #fff !important; /*Override */
+    text-decoration: underline !important;
+}
+
+
+.social-links a:hover {
+    background-color: #0d6efd;
+}
+
